@@ -52,9 +52,7 @@
     <Compile Include="Cuestionario1.Designer.cs">
       <DependentUpon>Cuestionario1.cs</DependentUpon>
     </Compile>
-    <Compile Include="DatosPaciente.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="DatosPaciente.cs" />
     <Compile Include="DatosPaciente.Designer.cs">
       <DependentUpon>DatosPaciente.cs</DependentUpon>
     </Compile>
@@ -123,6 +121,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{de348622-0b74-4286-a2ff-6ed7fafbf3f8}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GestiónAsma\Negocio.csproj">
+      <Project>{717b78df-f0a9-45c5-abb0-2e063eaa9c7d}</Project>
+      <Name>Negocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

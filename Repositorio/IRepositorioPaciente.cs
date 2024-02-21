@@ -1,8 +1,8 @@
 ﻿using Entidades;
 
-namespace Negocio
+namespace Repositorio
 {
-    public interface INegocioPaciente
+    public interface IRepositorioPaciente
     {
         void IngresarPaciente(Paciente paciente);
         void ActualizarPaciente(Paciente paciente);
