@@ -2,6 +2,6 @@
 {
     public interface INegocioUsuario
     {
-        bool ValidarUsuario(string nombreUsuario, string clave);
+        bool ValidarUsuario(string nombreUsuario, string contraseña);
     }
 }

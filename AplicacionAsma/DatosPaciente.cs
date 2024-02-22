@@ -1,8 +1,7 @@
-﻿using System.ComponentModel;
-using System;
-using Entidades;
-
-
+﻿using Entidades;
+using Negocio;
+using Repositorio;
+using System.ComponentModel;
 
 namespace AplicacionAsma
 {
@@ -17,6 +16,7 @@ namespace AplicacionAsma
         {
             this.Close();
         }
+  
 
         private void btnContinuar_Click(object sender, EventArgs e)
         {
@@ -26,23 +26,23 @@ namespace AplicacionAsma
 
             var Nombres = txtNombres.Text;
             var Apellidos = txtApellidos.Text;
-            var tipoIdentificacion = cboTidentificacion.SelectedItem as string;
+            var tipoDocumento = cboTidentificacion.SelectedItem as TipoDocumento;
             var numeroIdentificacion = txtNIdentificacion.Text;
             DateTime fechaNacimiento = dtpNacimiento.Value;
-            var estadoCivil = cboEstadoCivil.SelectedItem as string;
-            var genero = rdbMasculino.Checked ? "Maculino" :
-                        rdbFemenino.Checked ? "Femenino" :
-                        rdbNoBinario.Checked ? "No binario" : "";
-            var ciudad = cboCiudadResidencia.SelectedItem as string;
+            var estadoCivil = cboEstadoCivil.SelectedItem as EstadoCivil;
+            var genero = rdbMasculino.Checked ? 1 :
+                        rdbFemenino.Checked ? 2 :
+                        rdbNoBinario.Checked ? 3: 1;
+            var ciudad = cboCiudadResidencia.SelectedItem as Ciudad;
             string direccion = txtDireccion.Text;
             string telefono = txtTelefono.Text;
             string contactoEmergencia = txtCEmergencia.Text;
-            var ocupacion = cboOcupacion.SelectedItem as string;
-            var nivelEscolaridad = cboNEscolaridad.SelectedItem as string;  
+            var ocupacion = cboOcupacion.SelectedItem as Ocupacion;
+            var nivelEscolaridad = cboNEscolaridad.SelectedItem as NivelEscolaridad;  
             string email = txtEmail.Text;
-            var eps = cboEps.SelectedItem as string;
-            var regimen = rdbContributivo.Checked ? "Contributivo" :
-                           rdbSubsidiado.Checked ? "Subsidiado" : "";
+            var eps = cboEps.SelectedItem as EPS;
+            var regimen = rdbContributivo.Checked ? 1 :
+                           rdbSubsidiado.Checked ? 2: 1;
                                 
             //TODO 2. Validar datos del formulario
             erpDatos.SetError(txtNombres,null);
@@ -182,9 +182,34 @@ namespace AplicacionAsma
             }
 
             //TODO 4. Mostrar mensaje de confirmación de la operación
+            
+            paciente.Nombres = Nombres;
+            paciente.Apellidos = Apellidos;
+            paciente.TipoDocumento = tipoDocumento;
+            paciente.NumeroIdentificacion = numeroIdentificacion;
+            paciente.FechaNacimiento = fechaNacimiento;
+            paciente.EstadoCivil = estadoCivil;
+            paciente.Genero = genero;
+            paciente.Ciudad = ciudad;
+            paciente.Direccion = direccion;
+            paciente.Telefono = telefono;
+            paciente.ContactoEmergencia = contactoEmergencia;
+            paciente.Ocupacion = ocupacion;
+            paciente.NivelEscolaridad = nivelEscolaridad;
+            paciente.Email = email;
+            paciente.Eps = eps;
+            paciente.Regimen = regimen;
+
+            IRepositorioPaciente repositorioPaciente = new RepositorioPaciente();
+            INegocioPaciente negocioPaciente = new NegocioPaciente(repositorioPaciente);
+            if (paciente.Id == 0)
+                negocioPaciente.IngresarPaciente(paciente);
+            else
+                negocioPaciente.ActualizarPaciente(paciente);
+
             var datos = @"Nombres : " + Nombres + "\n" +
                        "Apellidos : " + Apellidos + "\n" +
-                       "Tipo identificación  : " + tipoIdentificacion + "\n" +
+                       "Tipo identificación  : " + tipoDocumento + "\n" +
                        "Número identificación : " + numeroIdentificacion + "\n" +
                        "Fecha Nacimiento : " + fechaNacimiento + "\n" +
                        "Estado civil : " + estadoCivil + "\n" +

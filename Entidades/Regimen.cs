@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class TipoDocumento
+    public class Regimen
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
+        public EPS Eps { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace Negocio
 {
     public class NegocioMaestro : INegocioMaestro
     {
-        IRepositorioMaestro repositorioMaestro = new RepositorioMaestroADO();
+        IRepositorioMaestro repositorioMaestro = new RepositorioMaestroEF();
         public NegocioMaestro(IRepositorioMaestro repositorioMaestro)
         {
             this.repositorioMaestro = repositorioMaestro;
@@ -18,9 +18,6 @@ namespace Negocio
 
         public List<Ciudad> ObtenerCiudades()
         => repositorioMaestro.ObtenerCiudades();
-
-        public List<Departamento> ObtenerDepartamentos()
-        => repositorioMaestro.ObtenerDepartamentos();
 
         public List<TipoDocumento> ObtenerTiposDocumento()
         => repositorioMaestro.ObtenerTiposDocumento();

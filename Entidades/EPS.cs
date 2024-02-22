@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    internal class EPS
+    public class EPS
     {
         public int Id {  get; set; }
         public string Nombre { get; set; }
+        public List<Regimen> Regimen { get; set; }
         
     } 
 }
