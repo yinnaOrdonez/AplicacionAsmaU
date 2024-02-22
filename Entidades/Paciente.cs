@@ -2,10 +2,11 @@
 {
     public class Paciente
     {
+        public int Id { get; set; } 
         public string Nombres { get; set; }
         public string Apellidos { get; set;  }
         public TipoDocumento TipoDocumento { get; set; }
-        public int NumeroIdentificacion { get; set; }
+        public string NumeroIdentificacion { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public Genero Genero { get; set; }  
         public EstadoCivil EstadoCivil { get; set; }
@@ -18,6 +19,6 @@
         public string Email { get; set; }
         public EPS Eps { get; set; }
         public Regimen Regimen { get; set; }
-        
+
     }
 }

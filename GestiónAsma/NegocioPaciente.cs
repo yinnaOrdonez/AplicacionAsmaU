@@ -1,4 +1,7 @@
-﻿namespace Negocio
+﻿using Entidades;
+using Repositorio;
+
+namespace Negocio
 {
     public class NegocioPaciente : INegocioPaciente
 

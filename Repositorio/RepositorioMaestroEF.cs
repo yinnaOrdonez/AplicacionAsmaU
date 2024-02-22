@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Entidades;
+using Modelo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -19,18 +21,16 @@ namespace Repositorio
 
             public List<Ciudad> ObtenerCiudades(int idDepartamento)
             {
-                var ciudades = contexto.Ciudades.Where(d => d.Id == idDepartamento)
-                    .Select(c => new Ciudad() { Id = c.Id, Nombre = c.Nombre })
-                    .OrderBy(c => c.Nombre)
-                    .ToList();
-
-                return ciudades;
+                return contexto.Ciudad
+                  .Select(c => new Ciudad() { Id = c.Id, Nombre = c.Nombre })
+                  .OrderBy(c => c.Nombre)
+                  .ToList();
             }
 
-            public List<Departamento> ObtenerDepartamentos()
+            public List<EstadoCivil> ObtenerEstadoCivil()
             {
-                return contexto.Departamentos
-                    .Select(c => new Departamento() { Id = c.Id, Nombre = c.Nombre })
+                return contexto.EstadoCivil
+                    .Select(c => new EstadoCivil() { Id = c.Id, Nombre = c.Nombre })
                     .OrderBy(c => c.Nombre)
                     .ToList();
             }
@@ -42,7 +42,66 @@ namespace Repositorio
                     .OrderBy(c => c.Nombre)
                     .ToList();
             }
+        public List<Ocupacion> ObtenerOcupacion()
+        {
+            return contexto.Ocupacion
+                .Select(c => new Ocupacion() { Id = c.Id, Nombre = c.Nombre })
+                .OrderBy(c => c.Nombre)
+                .ToList();
         }
+        public List<NivelEscolaridad> ObtenerNivelEscolaridad()
+        {
+            return contexto.NivelEscolaridad
+                .Select(c => new NivelEscolaridad() { Id = c.Id, Nombre = c.Nombre })
+                .OrderBy(c => c.Nombre)
+                .ToList();
+        }
+
+        public List<EPS> ObtenerEPS(int idRegimen)
+        {
+            var EPS = contexto.EPS.Where(d => d.Id == idRegimen)
+                .Select(c => new EPS() { Id = c.Id, Nombre = c.Nombre })
+                .OrderBy(c => c.Nombre)
+                .ToList();
+
+         
+        }
+
+        public List<Entidades.Ciudad> ObtenerCiudades()
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Entidades.TipoDocumento> IRepositorioMaestro.ObtenerTiposDocumento()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Entidades.Genero> ObtenerGenero()
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Entidades.NivelEscolaridad> IRepositorioMaestro.ObtenerNivelEscolaridad()
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Entidades.Ocupacion> IRepositorioMaestro.ObtenerOcupacion()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Entidades.EPS> ObtenerEPS()
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Entidades.EstadoCivil> IRepositorioMaestro.ObtenerEstadoCivil()
+        {
+            throw new NotImplementedException();
+        }
+    }
 
     
 }
